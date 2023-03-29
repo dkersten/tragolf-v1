@@ -1,11 +1,25 @@
+/* 
+61C3DE 
+AFAFDF
+8F71AC
+37638A
+
+Gradients
+BFD6FA
+F5CDFF
+
+A3E6F6
+C1EFEE
+*/
+
 :root {
   font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
   line-height: 1.5;
   font-weight: 400;
 
-  color-scheme: light dark;
+  /* color-scheme: light dark;
   color: rgba(255, 255, 255, 0.87);
-  background-color: #242424;
+  background-color: #242424; */
 
   font-synthesis: none;
   text-rendering: optimizeLegibility;
@@ -14,6 +28,7 @@
   -webkit-text-size-adjust: 100%;
 }
 
+/*
 a {
   font-weight: 500;
   color: #646cff;
@@ -66,4 +81,4 @@ button:focus-visible {
   button {
     background-color: #f9f9f9;
   }
-}
+} */
