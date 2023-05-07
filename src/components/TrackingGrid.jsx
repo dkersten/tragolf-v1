@@ -1,4 +1,4 @@
-
+import '../styling/tracking-grid.scss'
 
 const TrackingGrid = () => {
 
@@ -18,34 +18,45 @@ const TrackingGrid = () => {
     return rows
   }
 
+  // temporary function to simulate activity. Will need to be removed when actual data exists
+  const activityGenerator = () => {
+    const min = 0;
+    const max = 5;
+    const randNum = Math.floor(Math.random() * (max - min + 1)) + min;
+
+    return `activity-level-${randNum}`
+  }
+
   const buildMainTrackerColumns = () => {
     const cells = []
+
     for (let i = 0; i < 52; i++) {
-      cells.push(<td class="tracker-cell no-activity"></td>)
+      cells.push(<td className={`daily-tracking-cell daily-tracking-cell-${activityGenerator()}`}></td>)
     }
 
     return cells
   }
 
   return (
-    <section>
+    <section className="daily-tracking" >
       <h2>Practice Tracking</h2>
-    <table>
+    <table className='daily-tracking__grid'>
       <thead>
+        {/* these will need to be dynamic based on the number of days in the month and what day of the week the year started on */}
         <tr>
-          <th></th>
-          <th>Jan</th>
-          <th>Feb</th>
-          <th>Mar</th>
-          <th>Apr</th>
-          <th>May</th>
-          <th>Jun</th>
-          <th>Jul</th>
-          <th>Aug</th>
-          <th>Sep</th>
-          <th>Oct</th>
-          <th>Nov</th>
-          <th>Dec</th>
+          <th className="daily-tracking__header-cell"><span className="daily-tracking__header-day">Day</span></th>
+          <th className="daily-tracking__header-cell" colspan="4">Jan</th>
+          <th className="daily-tracking__header-cell" colspan="4">Feb</th>
+          <th className="daily-tracking__header-cell" colspan="4">Mar</th>
+          <th className="daily-tracking__header-cell" colspan="4">Apr</th>
+          <th className="daily-tracking__header-cell" colspan="4">May</th>
+          <th className="daily-tracking__header-cell" colspan="4">Jun</th>
+          <th className="daily-tracking__header-cell" colspan="4">Jul</th>
+          <th className="daily-tracking__header-cell" colspan="4">Aug</th>
+          <th className="daily-tracking__header-cell" colspan="4">Sep</th>
+          <th className="daily-tracking__header-cell" colspan="4">Oct</th>
+          <th className="daily-tracking__header-cell" colspan="4">Nov</th>
+          <th className="daily-tracking__header-cell" colspan="4">Dec</th>
         </tr>
       </thead>
       <tbody>
