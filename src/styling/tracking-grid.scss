@@ -1,50 +1,41 @@
 @import './App.scss';
 
-.daily-tracking__header-cell {
-    text-align: left;
-    width: 0;
-    height: 0;
-    overflow: hidden;
+.activity-tracking__key {
+    margin-top: $s-xs;
+    display: flex;
+    column-gap: 2px;
+    align-items: center;
+    font-size: $font-reg;
 }
 
-.daily-tracking__header-day {
-    width: 0;
-    height: 0;
-    display: inline-block;
-    opacity: 0;
+.activity-tracking__level-key {
+    &:first-of-type {
+        margin-right: $s-xxs;
+    }
+
+    &:last-of-type {
+        margin-left: $s-xxs;
+    }
 }
 
-.daily-tracking-row {
+.activity-tracking__level {
+    height: 11px;
+    width: 11px;
+    background: red;
 
-}
+    &-1 {
+        background-color: #f2f2f2ec;
+    }
 
-.daily-tracking-cell {
-    width: 12px;
-    height: 12px;
-    background: #f2f2f2ec;
-    border-radius: 3px;
-}
+    &-2 {
+        background-color: #a0dbeb;
+    }
 
-.daily-tracking-cell-activity-level-0 {
-    background: #f2f2f2ec;
-}
+    &-3 {
+        background-color: #61c3de;
+    }
 
-.daily-tracking-cell-activity-level-1 {
-    background: #a0dbeb;
-}
-
-.daily-tracking-cell-activity-level-2 {
-    background: #81cfe5;
-}
-
-.daily-tracking-cell-activity-level-3 {
-    background: #61c3de;
-}
-
-.daily-tracking-cell-activity-level-4 {
-    background: #4e9cb2;
-}
-
-.daily-tracking-cell-activity-level-5 {
-    background: #3a7585;
+    &-4 {
+        background-color: #4e9cb2;
+    }
 }
