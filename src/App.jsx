@@ -1,4 +1,5 @@
 import './styling/App.scss'
+import ActivityForm from './components/ActivityForm'
 import TrackingGrid from './components/TrackingGrid'
 
 function App() {
@@ -7,6 +8,7 @@ function App() {
     <div className="App">
       <section className='menu'>
         <h1>TraGolf</h1>
+        <ActivityForm />
       </section>
       <section className="tracking-grid">
         <TrackingGrid />
