@@ -5,6 +5,7 @@ import { PlusOutlined } from '@ant-design/icons';
 const ActivityForm = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [puttingMatStats, setPuttingMatStats] = useState(false);
+  const [formData, setFormData] = useState({})
 
   //Activity Options
   const activityOptions = [
@@ -38,8 +39,21 @@ const ActivityForm = () => {
     console.log(date, dateString);
   };
 
-  const handleActivityChange = () => {
-    console.log("activity change")
+  const handleActivityChange = (value) => {
+    console.log(value);
+    // check for putting mat session
+    value.map(val => {
+        val === "puttingMatPractice" ? setPuttingMatStats(true) : setPuttingMatStats(false)
+    })
+  }
+
+  const enterPuttingMatStats = () => {
+
+    return(
+        <div className="activity-form__input">
+            <label>To Do: Enter Putting Stats</label>
+        </div>
+    )
   }
 
   return (
@@ -53,7 +67,7 @@ const ActivityForm = () => {
                 <label>Date:</label>
                 <DatePicker onChange={onDateChange} />
             </div>
-            <div className='activity-form__input'>
+            <div className='activity-form__input activity-form__input--vertical'>
                 <label>Type:</label>
                 <Select
                 mode="multiple"
@@ -66,6 +80,7 @@ const ActivityForm = () => {
                 options={activityOptions}
                 />
             </div>
+            {puttingMatStats ? enterPuttingMatStats() : null}
         </form>
       </Modal>
     </>
