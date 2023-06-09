@@ -1,0 +1,24 @@
+@import './App.scss';
+
+.ant-modal-body {
+    margin-top:$s-sm;
+}
+
+.activity-form__input {
+    margin-bottom: $s-sm;
+    display: flex;
+    align-items: center;
+}
+
+.activity-form__label {
+    margin-right: $s-xs;
+}
+
+.activity-form__input--vertical {
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+.activity-form__input--vertical .activity-form__label {
+    margin-bottom: $s-xxs;
+}

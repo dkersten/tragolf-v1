@@ -2,10 +2,16 @@ import React, { useState } from 'react';
 import { Button, Modal, DatePicker, Select } from 'antd';
 import { PlusOutlined } from '@ant-design/icons';
 
+import '../styling/_activity_form.scss';
+
 const ActivityForm = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const [puttingMatStats, setPuttingMatStats] = useState(false);
-  const [formData, setFormData] = useState({})
+  const [showPuttingMatStats, setshowPuttingMatStats] = useState(false);
+  const [formData, setFormData] = useState({
+    date: null,
+    activityOptions: [],
+    puttingMatStats: null
+  })
 
   //Activity Options
   const activityOptions = [
@@ -20,6 +26,7 @@ const ActivityForm = () => {
     {label: "Simulator - Round Played", value: "simulatorRoundPlayed"},
     {label: "Simulator - Range Session", value: "simulatorRangeSession"},
     {label: "Simulator - Short Game Practice", value: "simulatorShortGamePractice"},
+    {label: "Golf Lesson", value: "golfLesson"},
   ]
 
   //   form controls
@@ -29,21 +36,42 @@ const ActivityForm = () => {
 
   const handleOk = () => {
     setIsModalOpen(false);
+    console.log('form data:', formData)
+    setFormData({
+        date: null,
+        activityOptions: [],
+        puttingMatStats: null
+    })
   };
 
   const handleCancel = () => {
     setIsModalOpen(false);
+    setFormData({
+        date: null,
+        activityOptions: [],
+        puttingMatStats: null
+    })
   };
 
-  const onDateChange = (date, dateString) => {
-    console.log(date, dateString);
+  const onDateChange = (date) => {
+    if (date !== null) {
+        const dateStr = `${date.$y}-${date.$M + 1}-${date.$D}`
+        setFormData(prevState => ({
+            ...prevState,
+            date: dateStr
+        }))
+    }
   };
 
   const handleActivityChange = (value) => {
-    console.log(value);
+    setFormData(prevState => ({
+        ...prevState,
+        activityOptions: value
+    }))
+
     // check for putting mat session
     value.map(val => {
-        val === "puttingMatPractice" ? setPuttingMatStats(true) : setPuttingMatStats(false)
+        val === "puttingMatPractice" ? setshowPuttingMatStats(true) : setshowPuttingMatStats(false)
     })
   }
 
@@ -51,7 +79,7 @@ const ActivityForm = () => {
 
     return(
         <div className="activity-form__input">
-            <label>To Do: Enter Putting Stats</label>
+            <label className='activity-form__label'>To Do: Enter Putting Stats</label>
         </div>
     )
   }
@@ -64,12 +92,13 @@ const ActivityForm = () => {
       <Modal title="Add Activities" open={isModalOpen} onOk={handleOk} onCancel={handleCancel} okText="Submit">
         <form>
             <div className='activity-form__input'>
-                <label>Date:</label>
-                <DatePicker onChange={onDateChange} />
+                <label htmlFor='datePicker' className='activity-form__label'>Date:</label>
+                <DatePicker id="datePicker" onChange={onDateChange} />
             </div>
             <div className='activity-form__input activity-form__input--vertical'>
-                <label>Type:</label>
+                <label htmlFor='activitySelect' className='activity-form__label'>Type:</label>
                 <Select
+                id="activitySelect"
                 mode="multiple"
                 allowClear
                 style={{
@@ -80,7 +109,7 @@ const ActivityForm = () => {
                 options={activityOptions}
                 />
             </div>
-            {puttingMatStats ? enterPuttingMatStats() : null}
+            {showPuttingMatStats ? enterPuttingMatStats() : null}
         </form>
       </Modal>
     </>
