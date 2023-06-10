@@ -66,6 +66,7 @@ const activityChartData = {
     "2023-06-05": 1,
     "2023-06-06": 1,
     "2023-06-07": 1,
+    "2023-06-09": 3,
 }
 
 export default activityChartData
