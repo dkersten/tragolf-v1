@@ -1,6 +1,7 @@
 import './styling/App.scss'
 import ActivityForm from './components/ActivityForm'
 import TrackingGrid from './components/TrackingGrid'
+import ModalButton from './components/ActivityModalForm'
 
 function App() {
 
@@ -8,7 +9,8 @@ function App() {
     <div className="App">
       <section className='menu'>
         <h1>TraGolf</h1>
-        <ActivityForm />
+        {/* <ActivityForm /> */}
+        <ModalButton />
       </section>
       <section className="tracking-grid">
         <TrackingGrid />

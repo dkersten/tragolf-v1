@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Button, Modal, DatePicker, Select } from 'antd';
+import { Button, Modal, Form, DatePicker, Select } from 'antd';
 import { PlusOutlined } from '@ant-design/icons';
 
 import '../styling/_activity_form.scss';
@@ -36,7 +36,17 @@ const ActivityForm = () => {
 
   const handleOk = () => {
     setIsModalOpen(false);
-    console.log('form data:', formData)
+
+    // format data for unifiedData
+    const activity = {
+        date: `${formData.date}`,
+        numActivities: formData.activityOptions.length,
+        activities: formData.activityOptions
+    }
+
+    console.log("activity", activity)
+    console.log("grid", `{${formData.date}: ${formData.activityOptions.length}}`)
+
     setFormData({
         date: null,
         activityOptions: [],
@@ -84,12 +94,86 @@ const ActivityForm = () => {
     )
   }
 
+  const onFinish = (values) => {
+    console.log('Success:', values);
+  }
+
+  const onFinishFailed = (errorInfo) => {
+    console.log('Failed:', errorInfo);
+  }
+
   return (
     <>
-      <Button type="text" onClick={showModal}>
-        <PlusOutlined />
-      </Button>
-      <Modal title="Add Activities" open={isModalOpen} onOk={handleOk} onCancel={handleCancel} okText="Submit">
+        <Button type="text" onClick={showModal}>
+            <PlusOutlined />
+        </Button>
+        <Modal title="Add Activities" open={isModalOpen} onOk={handleOk} onCancel={handleCancel} okText="Submit" footer={null}>
+        <Form
+            name="basic"
+            labelCol={{
+                span: 4,
+            }}
+            wrapperCol={{
+                span: 20,
+            }}
+            style={{
+                maxWidth: 600,
+            }}
+            initialValues={{
+                remember: true,
+            }}
+            onFinish={onFinish}
+            onFinishFailed={onFinishFailed}
+            autoComplete="off"
+        >
+        <Form.Item
+            label="Date"
+            name="date"
+            rules={[
+                {
+                required: true,
+                message: 'Select the date of activities',
+                },
+            ]}
+        >
+            <DatePicker id="datePicker" onChange={onDateChange} />
+        </Form.Item>
+
+        <Form.Item
+            label="Activities"
+            name="activites"
+            rules={[
+                {
+                required: true,
+                message: 'Add you activities',
+                },
+            ]}
+        >
+        <Select
+                id="activitySelect"
+                mode="multiple"
+                allowClear
+                style={{
+                    width: '100%',
+                }}
+                placeholder="Please select"
+                onChange={handleActivityChange}
+                options={activityOptions}
+            />
+        </Form.Item>
+
+        <Form.Item
+        wrapperCol={{
+            offset: 4,
+            span: 20,
+        }}
+        >
+        <Button type="primary" htmlType="submit">
+            Submit
+        </Button>
+        </Form.Item>
+    </Form>
+        {/* 
         <form>
             <div className='activity-form__input'>
                 <label htmlFor='datePicker' className='activity-form__label'>Date:</label>
@@ -110,7 +194,8 @@ const ActivityForm = () => {
                 />
             </div>
             {showPuttingMatStats ? enterPuttingMatStats() : null}
-        </form>
+        </form> 
+        */}
       </Modal>
     </>
   );
