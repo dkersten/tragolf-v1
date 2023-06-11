@@ -1,10 +1,12 @@
 import { Button, Form, Radio, Modal, DatePicker, Select } from 'antd';
 import { PlusOutlined } from '@ant-design/icons';
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 
 const CollectionCreateForm = ({ open, onCreate, onCancel }) => {
     const [form] = Form.useForm();
+
     const [activitySelectedValues, setActivitySelectedValues] = useState([]);
+    const [puttingRadioValue, setPuttingRadioValue] = useState(1);
 
     //Activity Options
     const activityOptions = [
@@ -22,9 +24,12 @@ const CollectionCreateForm = ({ open, onCreate, onCancel }) => {
         {label: "Golf Lesson", value: "golfLesson"},
     ]
 
-    // activitySelectedValues
     const handleActivityChange = (value) => {
         setActivitySelectedValues(value)
+    }
+
+    const handleRadioChange = (e) => {
+        setPuttingRadioValue(e.target.value)
     }
 
     return (
@@ -39,6 +44,7 @@ const CollectionCreateForm = ({ open, onCreate, onCancel }) => {
             .validateFields()
             .then((values) => {
                 form.resetFields();
+                setActivitySelectedValues([]);
                 onCreate(values);
             })
             .catch((info) => {
@@ -89,9 +95,22 @@ const CollectionCreateForm = ({ open, onCreate, onCancel }) => {
                 shouldUpdate
                 hidden={!activitySelectedValues.some(value => value === "puttingMatPractice")}
                 label="Enter Putting Mat Stats?"
-                name="puttingMatStatsConditional"
+                name="showPuttingMatStats"
             >
-                <Radio>Yes</Radio>
+                <Radio.Group
+                    name="puttingStatsBool"
+                    onChange={handleRadioChange}
+                    value={puttingRadioValue}
+                    rules={[
+                        {
+                        required: true,
+                        message: 'You must select an option',
+                        },
+                    ]}
+                >
+                    <Radio value={1}>No</Radio>
+                    <Radio value={2}>Yes</Radio>
+                </Radio.Group>
             </Form.Item>
         </Form>
         </Modal>
