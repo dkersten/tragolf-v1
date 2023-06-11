@@ -6,6 +6,7 @@ const CollectionCreateForm = ({ open, onCreate, onCancel }) => {
     const [form] = Form.useForm();
 
     const [activitySelectedValues, setActivitySelectedValues] = useState([]);
+    const [distanceSelectedValues, setDistanceSelectedValues] = useState([]);
     const [puttingRadioValue, setPuttingRadioValue] = useState(1);
 
     //Activity Options
@@ -24,8 +25,29 @@ const CollectionCreateForm = ({ open, onCreate, onCancel }) => {
         {label: "Golf Lesson", value: "golfLesson"},
     ]
 
+    const distanceOptions = [
+        {label: "3 ft", value: 3},
+        {label: "3.5 ft", value: 3.5},
+        {label: "4 ft", value: 4},
+        {label: "4.5 ft", value: 4.5},
+        {label: "5 ft", value: 5},
+        {label: "5.5 ft", value: 5.5},
+        {label: "6 ft", value: 6},
+        {label: "6.5 ft", value: 6.5},
+        {label: "7 ft", value: 7},
+        {label: "7.5 ft", value: 7.5},
+        {label: "8 ft", value: 8},
+        {label: "8.5 ft", value: 8.5},
+        {label: "9 ft", value: 9},
+
+    ]
+
     const handleActivityChange = (value) => {
         setActivitySelectedValues(value)
+    }
+
+    const handleDistanceChange = (value) => {
+        setDistanceSelectedValues(value)
     }
 
     const handleRadioChange = (e) => {
@@ -45,6 +67,7 @@ const CollectionCreateForm = ({ open, onCreate, onCancel }) => {
             .then((values) => {
                 form.resetFields();
                 setActivitySelectedValues([]);
+                setPuttingRadioValue(1);
                 onCreate(values);
             })
             .catch((info) => {
@@ -86,7 +109,7 @@ const CollectionCreateForm = ({ open, onCreate, onCancel }) => {
                     style={{
                         width: '100%',
                     }}
-                    placeholder="Please select"
+                    placeholder="Please select activities"
                     options={activityOptions}
                     onChange={handleActivityChange}
                 />
@@ -111,6 +134,30 @@ const CollectionCreateForm = ({ open, onCreate, onCancel }) => {
                     <Radio value={1}>No</Radio>
                     <Radio value={2}>Yes</Radio>
                 </Radio.Group>
+            </Form.Item>
+            <Form.Item
+                shouldUpdate
+                hidden={puttingRadioValue !== 2}
+                label="What distances did you put from?"
+                name="puttingDistances"
+                rules={[
+                    {
+                    required: true,
+                    message: 'You must select at least one distance',
+                    },
+                ]}
+            >
+                <Select
+                    id="activitySelect"
+                    mode="multiple"
+                    allowClear
+                    style={{
+                        width: '100%',
+                    }}
+                    placeholder="Please select distances"
+                    options={distanceOptions}
+                    onChange={handleDistanceChange}
+                />
             </Form.Item>
         </Form>
         </Modal>
