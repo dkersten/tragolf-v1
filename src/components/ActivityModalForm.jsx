@@ -1,4 +1,4 @@
-import { Button, Form, Radio, Modal, DatePicker, Select } from 'antd';
+import { Button, Form, Radio, Modal, DatePicker, Select, InputNumber } from 'antd';
 import { PlusOutlined } from '@ant-design/icons';
 import { useState } from 'react';
 
@@ -54,6 +54,61 @@ const CollectionCreateForm = ({ open, onCreate, onCancel }) => {
         setPuttingRadioValue(e.target.value)
     }
 
+    const puttDistanceInputs = () => {
+        const sortedDistances = distanceSelectedValues.sort((a, b) => (a > b ? 1 : -1))
+
+        const distanceInputElems = []
+
+        if (sortedDistances.length !== 0) {
+            for (let i = 0; i < sortedDistances.length; i++) {
+                distanceInputElems.push(
+                    <div className='activity-form__putting-distance-group'>
+                        <Form.Item 
+                            label={`Putts from ${sortedDistances[i]} ft`}
+                            className='activity-form__putting-distance-label--block'
+                        />
+                        <div className="activity-form__putting-distance--inline">
+                            <Form.Item
+                                shouldUpdate
+                                hidden={!distanceSelectedValues.some(value => value === sortedDistances[i])}
+                                label="Total Putts"
+                                name={`${sortedDistances[i]}ftTotalPutts`}
+                                // rules={[
+                                //     {
+                                //     required: true,
+                                //     message: `Add total putts from ${sortedDistances[i]}ft`,
+                                //     },
+                                // ]}
+                            >
+                                <InputNumber
+                                    min={1}
+                                />
+                            </Form.Item>
+                            <Form.Item
+                                shouldUpdate
+                                hidden={!distanceSelectedValues.some(value => value === sortedDistances[i])}
+                                label="Total Made"
+                                name={`${sortedDistances[i]}Putts`}
+                                // rules={[
+                                //     {
+                                //     required: true,
+                                //     message: `Add total putts from ${sortedDistances[i]}ft`,
+                                //     },
+                                // ]}
+                            >
+                                <InputNumber
+                                    min={1}
+                                />
+                            </Form.Item>
+                        </div>
+                    </div>
+                )
+            }
+        }
+
+        return distanceInputElems
+    }
+
     return (
         <Modal
         open={open}
@@ -68,6 +123,7 @@ const CollectionCreateForm = ({ open, onCreate, onCancel }) => {
                 form.resetFields();
                 setActivitySelectedValues([]);
                 setPuttingRadioValue(1);
+                setDistanceSelectedValues([]);
                 onCreate(values);
             })
             .catch((info) => {
@@ -124,12 +180,12 @@ const CollectionCreateForm = ({ open, onCreate, onCancel }) => {
                     name="puttingStatsBool"
                     onChange={handleRadioChange}
                     value={puttingRadioValue}
-                    rules={[
-                        {
-                        required: true,
-                        message: 'You must select an option',
-                        },
-                    ]}
+                    // rules={[
+                    //     {
+                    //     required: true,
+                    //     message: 'You must select an option',
+                    //     },
+                    // ]}
                 >
                     <Radio value={1}>No</Radio>
                     <Radio value={2}>Yes</Radio>
@@ -140,12 +196,12 @@ const CollectionCreateForm = ({ open, onCreate, onCancel }) => {
                 hidden={puttingRadioValue !== 2}
                 label="What distances did you put from?"
                 name="puttingDistances"
-                rules={[
-                    {
-                    required: true,
-                    message: 'You must select at least one distance',
-                    },
-                ]}
+                // rules={[
+                //     {
+                //     required: true,
+                //     message: 'You must select at least one distance',
+                //     },
+                // ]}
             >
                 <Select
                     id="activitySelect"
@@ -159,6 +215,7 @@ const CollectionCreateForm = ({ open, onCreate, onCancel }) => {
                     onChange={handleDistanceChange}
                 />
             </Form.Item>
+            { puttDistanceInputs() }
         </Form>
         </Modal>
     );

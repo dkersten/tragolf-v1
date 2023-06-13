@@ -22,3 +22,16 @@
 .activity-form__input--vertical .activity-form__label {
     margin-bottom: $s-xxs;
 }
+
+.activity-form__putting-distance-label--block {
+    margin-bottom: -2rem;
+}
+
+.activity-form__putting-distance--inline {
+    display: flex;
+    flex-wrap: wrap;
+
+    .ant-form-item:first-of-type {
+        margin-right: $s-sm;
+    }
+}
