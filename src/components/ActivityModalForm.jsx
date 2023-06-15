@@ -54,6 +54,61 @@ const CollectionCreateForm = ({ open, onCreate, onCancel }) => {
         setPuttingRadioValue(e.target.value)
     }
 
+    const puttingStatsRadio = () => {
+        return( 
+            <Form.Item
+                shouldUpdate
+                hidden={!activitySelectedValues.some(value => value === "puttingMatPractice")}
+                label="Enter Putting Mat Stats?"
+                name="showPuttingMatStats"
+            >
+                <Radio.Group
+                    name="puttingStatsBool"
+                    onChange={handleRadioChange}
+                    value={puttingRadioValue}
+                    rules={[
+                        {
+                        required: true,
+                        message: 'You must select an option',
+                        },
+                    ]}
+                >
+                    <Radio value={1}>No</Radio>
+                    <Radio value={2}>Yes</Radio>
+                </Radio.Group>
+            </Form.Item>
+        )
+    }
+
+    const puttingDistancesSelect = () => {
+        return(
+            <Form.Item
+                shouldUpdate
+                hidden={puttingRadioValue !== 2}
+                label="What distances did you put from?"
+                name="puttingDistances"
+                rules={[
+                    {
+                    required: true,
+                    message: 'You must select at least one distance',
+                    },
+                ]}
+            >
+                <Select
+                    id="activitySelect"
+                    mode="multiple"
+                    allowClear
+                    style={{
+                        width: '100%',
+                    }}
+                    placeholder="Please select distances"
+                    options={distanceOptions}
+                    onChange={handleDistanceChange}
+                />
+            </Form.Item>
+        )
+    }
+
     const puttDistanceInputs = () => {
         const sortedDistances = distanceSelectedValues.sort((a, b) => (a > b ? 1 : -1))
 
@@ -62,7 +117,7 @@ const CollectionCreateForm = ({ open, onCreate, onCancel }) => {
         if (sortedDistances.length !== 0) {
             for (let i = 0; i < sortedDistances.length; i++) {
                 distanceInputElems.push(
-                    <div className='activity-form__putting-distance-group'>
+                    <div key={sortedDistances[i]} className='activity-form__putting-distance-group'>
                         <Form.Item 
                             label={`Putts from ${sortedDistances[i]} ft`}
                             className='activity-form__putting-distance-label--block'
@@ -73,12 +128,12 @@ const CollectionCreateForm = ({ open, onCreate, onCancel }) => {
                                 hidden={!distanceSelectedValues.some(value => value === sortedDistances[i])}
                                 label="Total Putts"
                                 name={`${sortedDistances[i]}ftTotalPutts`}
-                                // rules={[
-                                //     {
-                                //     required: true,
-                                //     message: `Add total putts from ${sortedDistances[i]}ft`,
-                                //     },
-                                // ]}
+                                rules={[
+                                    {
+                                    required: true,
+                                    message: `Add total putts from ${sortedDistances[i]}ft`,
+                                    },
+                                ]}
                             >
                                 <InputNumber
                                     min={1}
@@ -89,12 +144,12 @@ const CollectionCreateForm = ({ open, onCreate, onCancel }) => {
                                 hidden={!distanceSelectedValues.some(value => value === sortedDistances[i])}
                                 label="Total Made"
                                 name={`${sortedDistances[i]}Putts`}
-                                // rules={[
-                                //     {
-                                //     required: true,
-                                //     message: `Add total putts from ${sortedDistances[i]}ft`,
-                                //     },
-                                // ]}
+                                rules={[
+                                    {
+                                    required: true,
+                                    message: `Add total putts from ${sortedDistances[i]}ft`,
+                                    },
+                                ]}
                             >
                                 <InputNumber
                                     min={1}
@@ -170,52 +225,10 @@ const CollectionCreateForm = ({ open, onCreate, onCancel }) => {
                     onChange={handleActivityChange}
                 />
             </Form.Item>
-            <Form.Item
-                shouldUpdate
-                hidden={!activitySelectedValues.some(value => value === "puttingMatPractice")}
-                label="Enter Putting Mat Stats?"
-                name="showPuttingMatStats"
-            >
-                <Radio.Group
-                    name="puttingStatsBool"
-                    onChange={handleRadioChange}
-                    value={puttingRadioValue}
-                    // rules={[
-                    //     {
-                    //     required: true,
-                    //     message: 'You must select an option',
-                    //     },
-                    // ]}
-                >
-                    <Radio value={1}>No</Radio>
-                    <Radio value={2}>Yes</Radio>
-                </Radio.Group>
-            </Form.Item>
-            <Form.Item
-                shouldUpdate
-                hidden={puttingRadioValue !== 2}
-                label="What distances did you put from?"
-                name="puttingDistances"
-                // rules={[
-                //     {
-                //     required: true,
-                //     message: 'You must select at least one distance',
-                //     },
-                // ]}
-            >
-                <Select
-                    id="activitySelect"
-                    mode="multiple"
-                    allowClear
-                    style={{
-                        width: '100%',
-                    }}
-                    placeholder="Please select distances"
-                    options={distanceOptions}
-                    onChange={handleDistanceChange}
-                />
-            </Form.Item>
-            { puttDistanceInputs() }
+            {/* Conditional putting mat stats based on user input */}
+            { activitySelectedValues.some(value => value === "puttingMatPractice") ? puttingStatsRadio() : null }
+            { puttingRadioValue === 2 ? puttingDistancesSelect() : null }
+            { puttingRadioValue === 2 && distanceSelectedValues.length > 0 ? puttDistanceInputs() : null }
         </Form>
         </Modal>
     );

@@ -15,6 +15,13 @@ const unifiedData = {
     },
     activityDailies: [
         {
+            date: "2023-06-11",
+            numActivities: 1,
+            activities: [
+                "exerciseStrengthTraining"
+            ]
+        },
+        {
             date: "2023-06-09",
             numActivities: 3,
             activities: [
@@ -521,6 +528,7 @@ const unifiedData = {
         }
     ],
     gridData: {
+        "2023-06-11": 1,
         "2023-03-18": 1,
         "2023-03-19": 1,
         "2023-03-20": 2,
