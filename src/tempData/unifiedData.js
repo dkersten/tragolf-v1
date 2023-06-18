@@ -1,12 +1,12 @@
 const unifiedData = {
     activityTotals: {
-        roundPlayed: 21,
+        roundPlayed: 24,
         shortGamePractice: 12,
         rangeSession: 11,
         puttingPractice: 9,
         puttingMatPractice: 27,
         exerciseMobilityAndStrength: 4,
-        exerciseStrengthTraining: 11,
+        exerciseStrengthTraining: 13,
         exerciseCardio: 1,
         simulatorRoundPlayed: 0,
         simulatorRangeSession: 0,
@@ -528,6 +528,10 @@ const unifiedData = {
         }
     ],
     gridData: {
+        "2023-06-17": 1,
+        "2023-06-16": 1,
+        "2023-06-14": 1,
+        "2023-06-13": 1,
         "2023-06-11": 1,
         "2023-03-18": 1,
         "2023-03-19": 1,

@@ -241,6 +241,30 @@ const ModalButton = () => {
   const onCreate = (values) => {
     console.log('Received values of form: ', values);
     setOpen(false);
+
+    // base form data object
+    const formData = {
+        activityDailies: [],
+        gridData: {}
+    };
+    
+    // activity date
+    const updateDate = (val) => {
+        if (val.length === 1) {
+            return '0' + val
+        } else {
+            return val
+        }
+    }
+    let month = `${values.date.$M + 1}`
+    let day = `${values.date.$D}`
+    month = updateDate(month)
+    day = updateDate(day)
+    const activityDate = `${values.date.$y}-${month}-${day}`
+    
+    // add data to form data object
+    formData.gridData[`${activityDate}`] = values.activities.length
+    console.log(formData)
   };
   return (
     <div>
