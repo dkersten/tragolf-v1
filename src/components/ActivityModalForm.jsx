@@ -244,7 +244,7 @@ const ModalButton = () => {
 
     // base form data object
     const formData = {
-        activityDailies: [],
+        activityDailies: {},
         gridData: {}
     };
     
@@ -264,6 +264,12 @@ const ModalButton = () => {
     
     // add data to form data object
     formData.gridData[`${activityDate}`] = values.activities.length
+    formData.activityDailies = {
+        date: activityDate,
+        numActivities: values.activities.length,
+        activities: values.activities
+    }
+
     console.log(formData)
   };
   return (
@@ -273,8 +279,11 @@ const ModalButton = () => {
         onClick={() => {
             setOpen(true);
         }}
+        aria-label="Add activity"
       >
-        <PlusOutlined />
+        <PlusOutlined
+            style={{fontSize: "1.25rem", color: "#4e9cb2"}}
+        />
       </Button>
       <CollectionCreateForm
         open={open}

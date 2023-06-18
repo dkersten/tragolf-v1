@@ -15,6 +15,34 @@ const unifiedData = {
     },
     activityDailies: [
         {
+            date: "2023-06-17",
+            numActivities: 1,
+            activities: [
+                "exerciseStrengthTraining"
+            ]
+        },
+        {
+            date: "2023-06-16",
+            numActivities: 1,
+            activities: [
+                "roundPlayed"
+            ]
+        },
+        {
+            date: "2023-06-14",
+            numActivities: 1,
+            activities: [
+                "exerciseStrengthTraining"
+            ]
+        },
+        {
+            date: "2023-06-13",
+            numActivities: 1,
+            activities: [
+                "roundPlayed"
+            ]
+        },
+        {
             date: "2023-06-11",
             numActivities: 1,
             activities: [
