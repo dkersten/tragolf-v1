@@ -9,6 +9,8 @@ h1, h2, h3, h4, span, li, div, p {
 .menu {
   display: flex;
   justify-content: space-between;
+  padding-top: $s-lg;
+  margin-bottom: $s-lg;
 }
 
 // #root {
@@ -57,5 +59,15 @@ h1, h2, h3, h4, span, li, div, p {
 .App {
   max-width: 1200px;
   margin: $s-lg auto;
-  padding: 0 $s-sm;
+  padding: 0 $s-lg;
+}
+
+:where(.css-dev-only-do-not-override-15rg2km).ant-radio-button-wrapper-checked:not(.ant-radio-button-wrapper-disabled):active, :where(.css-dev-only-do-not-override-15rg2km).ant-radio-button-wrapper-checked:not(.ant-radio-button-wrapper-disabled):hover {
+  border-color:#36454F;
+  color: #36454F;
+  background: #f2f2fb;
+}
+
+:where(.css-dev-only-do-not-override-15rg2km).ant-radio-button-wrapper-checked:not(.ant-radio-button-wrapper-disabled):active::before, :where(.css-dev-only-do-not-override-15rg2km).ant-radio-button-wrapper-checked:not(.ant-radio-button-wrapper-disabled):hover::before {
+  background-color: #36454F;
 }

@@ -1,19 +1,21 @@
 import './styling/App.scss'
-import ActivityForm from './components/ActivityForm'
 import TrackingGrid from './components/TrackingGrid'
 import ModalButton from './components/ActivityModalForm'
+import StatsOverview from './components/StatsOverview'
 
-function App() {
+const App = () => {
 
   return (
     <div className="App">
       <section className='menu'>
         <h1>TraGolf</h1>
-        {/* <ActivityForm /> */}
         <ModalButton />
       </section>
       <section className="tracking-grid">
         <TrackingGrid />
+      </section>
+      <section className="stats-overview">
+        <StatsOverview />
       </section>
     </div>
   )

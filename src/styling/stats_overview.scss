@@ -1,0 +1,10 @@
+@import './App.scss';
+
+.stats-overview {
+    margin-top: $s-xl;
+}
+
+.stats-overview__duration {
+    display: flex;
+    justify-content: flex-end;
+}

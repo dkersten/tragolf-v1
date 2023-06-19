@@ -1,6 +1,7 @@
 import { Button, Form, Radio, Modal, DatePicker, Select, InputNumber } from 'antd';
 import { PlusOutlined } from '@ant-design/icons';
 import { useState } from 'react';
+import '../styling/_activity_form.scss';
 
 const CollectionCreateForm = ({ open, onCreate, onCancel }) => {
     const [form] = Form.useForm();

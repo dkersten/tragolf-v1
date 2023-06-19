@@ -1,37 +1,43 @@
 @import './App.scss';
 
-.ant-modal-body {
-    margin-top:$s-sm;
-}
-
-.activity-form__input {
-    margin-bottom: $s-sm;
-    display: flex;
-    align-items: center;
-}
-
-.activity-form__label {
-    margin-right: $s-xs;
-}
-
-.activity-form__input--vertical {
-    flex-direction: column;
-    align-items: flex-start;
-}
-
-.activity-form__input--vertical .activity-form__label {
-    margin-bottom: $s-xxs;
-}
-
-.activity-form__putting-distance-label--block {
-    margin-bottom: -2rem;
-}
-
-.activity-form__putting-distance--inline {
-    display: flex;
-    flex-wrap: wrap;
-
-    .ant-form-item:first-of-type {
-        margin-right: $s-sm;
+.menu {
+    .css-dev-only-do-not-override-15rg2km.ant-btn {
+        padding: 0;
     }
 }
+
+// .ant-modal-body {
+//     margin-top:$s-sm;
+// }
+
+// .activity-form__input {
+//     margin-bottom: $s-sm;
+//     display: flex;
+//     align-items: center;
+// }
+
+// .activity-form__label {
+//     margin-right: $s-xs;
+// }
+
+// .activity-form__input--vertical {
+//     flex-direction: column;
+//     align-items: flex-start;
+// }
+
+// .activity-form__input--vertical .activity-form__label {
+//     margin-bottom: $s-xxs;
+// }
+
+// .activity-form__putting-distance-label--block {
+//     margin-bottom: -2rem;
+// }
+
+// .activity-form__putting-distance--inline {
+//     display: flex;
+//     flex-wrap: wrap;
+
+//     .ant-form-item:first-of-type {
+//         margin-right: $s-sm;
+//     }
+// }
