@@ -4,30 +4,29 @@ import '../styling/stats_overview.scss';
 
 const StatsOverview = () => {
 
-    const [value3, setValue3] = useState('3 Mon');
+    const [duration, setDuration] = useState('3mon');
 
     const options = [
         {
-            label: '1 Mon',
-            value: '1 Mon',
+            label: '1 Mo.',
+            value: '1mon',
         },
         {
-            label: '3 Mon',
-            value: '3 Mon',
+            label: '3 Mo.',
+            value: '3mon',
         },
         {
             label: 'YTD',
-            value: 'YTD',
+            value: 'ytd',
         },
         {
             label: 'Last Year',
-            value: 'Last Year',
+            value: 'lastYear',
         }
     ];
 
-    const onChange3 = ({ target: { value } }) => {
-        console.log('radio3 checked', value);
-        setValue3(value);
+    const onDurationChange = ({ target: { value } }) => {
+        setDuration(value);
     }
 
     return (
@@ -35,12 +34,25 @@ const StatsOverview = () => {
             <div className="stats-overview__duration">
                 <Radio.Group
                     options={options}
-                    onChange={onChange3}
-                    value={value3}
+                    onChange={onDurationChange}
+                    value={duration}
                     optionType="button"
                     size='middle'
-                    styles={{border: 'red'}}
                 />
+            </div>
+            <div className="stats-overview__card-section">
+                {
+                    duration === '1mon' ? <span>One Month</span> : null
+                }
+                {
+                    duration === '3mon' ? <span>Three Month</span> : null
+                }
+                {
+                    duration === 'ytd' ? <span>Year to Date</span> : null
+                }
+                {
+                    duration === 'lastYear' ? <span>Last Year</span> : null
+                }
             </div>
         </>
     )

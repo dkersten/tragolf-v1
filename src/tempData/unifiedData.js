@@ -1,12 +1,12 @@
 const unifiedData = {
     activityTotals: {
-        roundPlayed: 24,
-        shortGamePractice: 12,
-        rangeSession: 11,
+        roundPlayed: 38,
+        shortGamePractice: 13,
+        rangeSession: 12,
         puttingPractice: 9,
         puttingMatPractice: 27,
         exerciseMobilityAndStrength: 4,
-        exerciseStrengthTraining: 13,
+        exerciseStrengthTraining: 14,
         exerciseCardio: 1,
         simulatorRoundPlayed: 0,
         simulatorRangeSession: 0,
@@ -14,6 +14,106 @@ const unifiedData = {
         golfLesson: 0
     },
     activityDailies: [
+        {
+            date: "2023-07-22",
+            numActivities: 2,
+            activities: [
+                "shortGamePractice",
+                "exerciseStrengthTraining"
+            ]
+        },
+        {
+            date: "2023-07-17",
+            numActivities: 1,
+            activities: [
+                "roundPlayed"
+            ]
+        },
+        {
+            date: "2023-07-16",
+            numActivities: 1,
+            activities: [
+                "roundPlayed"
+            ]
+        },
+        {
+            date: "2023-07-15",
+            numActivities: 2,
+            activities: [
+                "roundPlayed",
+                "rangeSession"
+            ]
+        },
+        {
+            date: "2023-07-12",
+            numActivities: 1,
+            activities: [
+                "roundPlayed"
+            ]
+        },
+        {
+            date: "2023-07-09",
+            numActivities: 1,
+            activities: [
+                "roundPlayed"
+            ]
+        },
+        {
+            date: "2023-07-03",
+            numActivities: 1,
+            activities: [
+                "roundPlayed"
+            ]
+        },
+        {
+            date: "2023-06-30",
+            numActivities: 1,
+            activities: [
+                "roundPlayed"
+            ]
+        },
+        {
+            date: "2023-06-26",
+            numActivities: 1,
+            activities: [
+                "roundPlayed"
+            ]
+        },
+        {
+            date: "2023-06-24",
+            numActivities: 1,
+            activities: [
+                "roundPlayed"
+            ]
+        },
+        {
+            date: "2023-06-23",
+            numActivities: 1,
+            activities: [
+                "roundPlayed"
+            ]
+        },
+        {
+            date: "2023-06-22",
+            numActivities: 1,
+            activities: [
+                "roundPlayed"
+            ]
+        },
+        {
+            date: "2023-06-21",
+            numActivities: 1,
+            activities: [
+                "roundPlayed"
+            ]
+        },
+        {
+            date: "2023-06-19",
+            numActivities: 1,
+            activities: [
+                "roundPlayed"
+            ]
+        },
         {
             date: "2023-06-17",
             numActivities: 1,
@@ -556,6 +656,20 @@ const unifiedData = {
         }
     ],
     gridData: {
+        "2023-07-22": 2,
+        "2023-07-17": 1,
+        "2023-07-16": 1,
+        "2023-07-15": 2,
+        "2023-07-12": 1,
+        "2023-07-09": 1,
+        "2023-07-03": 1,
+        "2023-06-30": 1,
+        "2023-06-26": 1,
+        "2023-06-24": 1,
+        "2023-06-23": 1,
+        "2023-06-22": 1,
+        "2023-06-19": 1,
+        "2023-06-17": 1,
         "2023-06-17": 1,
         "2023-06-16": 1,
         "2023-06-14": 1,
